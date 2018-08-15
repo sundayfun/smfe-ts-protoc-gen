@@ -1,6 +1,6 @@
 {
-  "name": "ts-protoc-gen",
-  "version": "0.7.7-pre",
+  "name": "@sundaymorning/ts-protoc-gen",
+  "version": "0.0.1",
   "description": "Protoc Plugin for TypeScript Declarations and Service Definitions",
   "scripts": {
     "lint": "tslint -c tslint.json 'test/**/*.ts' 'src/**/*.ts'",
@@ -16,7 +16,10 @@
   "bin": {
     "protoc-gen-ts": "bin/protoc-gen-ts"
   },
-  "repository": "https://github.com/improbable-eng/ts-protoc-gen",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/improbable-eng/ts-protoc-gen.git"
+  },
   "keywords": [
     "protobuf",
     "protoc",
@@ -48,5 +51,15 @@
     "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
     "typescript": "^2.7.2"
+  },
+  "bugs": {
+    "url": "https://github.com/improbable-eng/ts-protoc-gen/issues"
+  },
+  "homepage": "https://github.com/improbable-eng/ts-protoc-gen#readme",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib",
+    "test": "test"
   }
 }

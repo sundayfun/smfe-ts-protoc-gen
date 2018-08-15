@@ -248,7 +248,7 @@ function generateJavaScript(fileDescriptor: FileDescriptorProto, exportMap: Expo
   // Services.
   serviceDescriptor.services
     .forEach(service => {
-      printer.printLn(`var ${service.name} = (function () {`);
+      printer.printLn(`export var ${service.name} = (function () {`);
       printer.printIndentedLn(`function ${service.name}() {}`);
       printer.printIndentedLn(`${service.name}.serviceName = "${service.qualifiedName}";`);
       printer.printIndentedLn(`return ${service.name};`);
@@ -267,7 +267,6 @@ function generateJavaScript(fileDescriptor: FileDescriptorProto, exportMap: Expo
           printer.printLn(`};`);
           printer.printEmptyLn();
         });
-      printer.printLn(`exports.${service.name} = ${service.name};`);
       printer.printEmptyLn();
 
       // Add a client stub that talks with the grpc-web-client library
@@ -283,7 +282,7 @@ function printServiceStub(methodPrinter: Printer, service: RPCDescriptor) {
   const printer = new CodePrinter(0, methodPrinter);
 
   printer
-           .printLn(`function ${service.name}Client(serviceHost, options) {`)
+           .printLn(`export function ${service.name}Client(serviceHost, options) {`)
     .indent().printLn(`this.serviceHost = serviceHost;`)
              .printLn(`this.options = options || {};`)
   .dedent().printLn(`}`)
@@ -301,7 +300,6 @@ function printServiceStub(methodPrinter: Printer, service: RPCDescriptor) {
     }
     printer.printEmptyLn();
   });
-  printer.printLn(`exports.${service.name}Client = ${service.name}Client;`);
 }
 
 function printUnaryStubMethod(printer: CodePrinter, method: RPCMethodDescriptor) {
